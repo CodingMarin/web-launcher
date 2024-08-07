@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Freestyle GunZ - Weblauncher</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="cache-control" content="max-age=0">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      text-decoration: none;
+      font-size: 12px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    html {
+      overflow: hidden
+    }
+
+    body {
+      background: #1a1717;
+    }
+
+    .body {
+      width: 710px;
+      height: 434px;
+      margin: 0 auto;
+      background: url('https://fgunz.net/images/launcher/cover4.jpg');
+    }
+
+    .wrapper {
+      width: 710px;
+    }
+
+    .nav {
+      width: 100px;
+      float: left;
+    }
+
+    .nav li {
+      width: 100px;
+      height: 30px;
+      color: #a7a7a7;
+      margin-top: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      text-indent: 14px;
+      font-size: 11px;
+      line-height: 32px;
+    }
+
+    .nav li:first-child {
+      margin-top: 15px;
+    }
+
+    .nav li.active {
+      background: url('https://fgunz.net/images/launcher/highlighted.png') no-repeat;
+      color: #fff;
+    }
+
+    .section {
+      float: left;
+      width: 610px;
+      height: 434px;
+    }
+
+    .section li.active {
+      color: #fff;
+    }
+
+    .event span,
+    .players span {
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .event {
+      margin: 27px 0px 10px 16px;
+    }
+
+    .players {
+      margin: 17px 0px 10px 16px;
+    }
+
+    .players span:first-child {
+      color: #fff;
+    }
+
+    .event span {
+      color: #4e74b3;
+    }
+
+    .event.hasevent span,
+    .players span:last-child {
+      color: #00bd31;
+    }
+
+    .header {
+      height: 70px;
+    }
+
+    .header .title {
+      width: 300px;
+      float: left;
+    }
+
+    .header .title h1,
+    .header .title h2 {
+      margin-left: 15px;
+    }
+
+    .header .title h1 {
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: 12px;
+    }
+
+    .header .title h2 {
+      color: #adadad;
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    .header .title h2 span {
+      color: #ef3d3d;
+      font-weight: 300;
+      font-size: 10px;
+    }
+
+    .header div:last-child {
+      width: 300px;
+      float: left;
+      position: relative;
+    }
+
+    .header div:last-child span {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #5a5a5a;
+      font-weight: 700;
+    }
+
+    .header div:last-child span span {
+      color: #b02a2a;
+      display: inline-block;
+    }
+
+    .price {
+      margin-top: 23px;
+      margin-left: 5px;
+      display: block;
+      width: 85px;
+      float: left;
+    }
+
+    .strike {
+      position: relative;
+      color: #5a5a5a !important;
+    }
+
+    .strike::before {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 50%;
+      right: 0;
+      border: 1px solid red;
+      -webkit-transform: rotate(-5deg);
+      -moz-transform: rotate(-5deg);
+      -ms-transform: rotate(-5deg);
+      -o-transform: rotate(-5deg);
+      transform: rotate(-5deg);
+    }
+
+    .name {
+      display: none;
+      position: absolute;
+      top: 5px;
+      left: 0px;
+      text-align: center;
+      color: #fff !important;
+      background: rgba(0, 0, 0, 0.8);
+      width: 200px;
+      height: 49px;
+      line-height: 52px;
+      font-size: 10px !important;
+      z-index: 999;
+    }
+
+    .name:hover,
+    .price:hover+.name,
+    .img:hover+.name {
+      display: block;
+    }
+
+    .img {
+      display: block;
+      float: left;
+      margin: 10px 0 0 10px;
+      text-align: center;
+      width: 110px;
+    }
+
+    .img img {
+      max-height: 40px;
+      max-width: 100px;
+    }
+
+    .header a {
+      background: #292929;
+      border-radius: 15px;
+      border: none;
+      color: #fff;
+      padding: 5px 15px;
+      font-size: 9px;
+      text-transform: uppercase;
+      margin-top: 19px;
+      margin-left: 5px;
+      display: inline-block;
+    }
+
+    .title {
+      display: none;
+    }
+
+    .title.title1 {
+      display: block;
+    }
+
+    .content {
+      display: none;
+    }
+
+    .content.news1 {
+      display: block;
+    }
+
+    .content p {
+      color: #cccccc;
+      font-size: 12px;
+      margin: 0 0 0 15px;
+      line-height: 13px;
+      width: 585px;
+    }
+
+    .content a {
+      color: #2899ff;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="body">
+    <div class="wrapper">
+      <div class="nav">
+        <ul>
+          <li class="active">26 JUL 2024</li>
+          <li class="">11 JAN 2024</li>
+          <li class="">24 JUL 2023</li>
+          <li class="">18 JUL 2023</li>
+          <li class="">05 JUN 2023</li>
+          <li class="">26 MAR 2023</li>
+          <li class="">10 DEC 2022</li>
+          <li class="">06 DEC 2022</li>
+          <li class="">04 DEC 2022</li>
+        </ul>
+        <div class="event">
+          <span class="c7">no event</span><br>
+          <span class="c8">in progress</span>
+        </div>
+        <div class="players">
+          <span class="c4">202 players</span>
+          <span>online</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="header">
+          <div class="title title1" style="display: block;">
+            <h1>DYNAMIC DUELS</h1>
+            <h2>posted on <span>26 JUL 2024</span></h2>
+          </div>
+          <div class="title title2" style="display: none;">
+            <h1>2024 UPDATE RELEASED</h1>
+            <h2>posted on <span>11 JAN 2024</span></h2>
+          </div>
+          <div class="title title3" style="display: none;">
+            <h1>FGUNZ UPDATE</h1>
+            <h2>posted on <span>24 JUL 2023</span></h2>
+          </div>
+          <div class="title title4" style="display: none;">
+            <h1>FGUNZ UPDATE</h1>
+            <h2>posted on <span>18 JUL 2023</span></h2>
+          </div>
+          <div class="title title5" style="display: none;">
+            <h1>JUNE UPDATE</h1>
+            <h2>posted on <span>05 JUN 2023</span></h2>
+          </div>
+          <div class="title title6" style="display: none;">
+            <h1>FGUNZ UPDATE</h1>
+            <h2>posted on <span>26 MAR 2023</span></h2>
+          </div>
+          <div class="title title7" style="display: none;">
+            <h1>SMALL UPDATE</h1>
+            <h2>posted on <span>10 DEC 2022</span></h2>
+          </div>
+          <div class="title title8" style="display: none;">
+            <h1>SMALL UPDATE</h1>
+            <h2>posted on <span>06 DEC 2022</span></h2>
+          </div>
+          <div class="title title9" style="display: none;">
+            <h1>FGUNZ HOTFIX</h1>
+            <h2>posted on <span>04 DEC 2022</span></h2>
+          </div>
+          <div>
+            <span class="price">
+              <span class="strike c1">100 coins</span>
+              <span class="c2">75 coins</span>
+            </span>
+            <span class="name">[H] Admiral's Rifle</span>
+            <span class="img">
+              <img class="c3" src="./Freestyle GunZ - Weblauncher_files/[H] Admiral&#39;s Rifle.png">
+            </span>
+            <span class="name">[H] Admiral's Rifle</span>
+            <a class="c5" href="https://fgunz.net/itemshop/donation?id=135" target="_blank">View Item</a>
+          </div>
+        </div>
+        <div class="content news1" style="display: block;">
+          <p>• Added new gamemode: Dynamic Duels. Up to 32 players fight simultaneously in 16 ranked arenas; each arena gives you a fresh opponent and a new challenge. Beat the arenas and climb to the top!<br>
+            • Game performance improvements<br>
+            • Anti-Lead and damage counter performance improvements and optimizations<br>
+            • Decreased (optimized) tick rates and bandwidth usage, this should also fix reported gladiator iframe issues<br>
+            • Removed Gunz 1.0 Head Animation Option because it also caused iframe issues in glad<br>
+            • Various client crash fixes<br>
+            • Flashbangs: When flashed, your screen now turns black instead of white<br>
+            • Replaced "Unlocked camera after wallrun" option by "Unlocked camera" option, which now completely unlocks the camera, allowing you to aim freely in all directions during tumble, etc. (enabled per default)<br>
+            • Updated crosshair size option for a smoother experience, allowing you to quickly and more precisely adjust your crosshair size by using the slider or manually entering a value (between 0.1 and 5) in the edit field (Options -&gt; Misc -&gt; Crosshair Size)<br>
+            • Added /join [room number] command, allowing you to quickly join any room of your choice. You can even use this command while playing to quickly hop into other rooms. You can also type "/join event" to quickly join an event room if it exists<br>
+            • Premium Items Box: You can now purchase 1-999 at once<br>
+            • Premium Items Box: Fixed being able to click to re-open the box while it's already being opened<br>
+            • Added 16 additional F1-F8 chat/command macros, usable via CTRL + F1-F8 and Shift + F1-F8 (You can assign these at Options -&gt; Macro)<br>
+            • Improved Quest NPC AI, which should help NPCs to get stuck less often (Thanks Jetman)<br>
+            • Added "Never show pop-up for new DMs" option (Misc -&gt; Tab 2)<br><br>
+
+            ...and much more!<br><br>
+
+            View <a href="https://freestylersworld.com/showthread.php?126718-FGunZ-Update-Dynamic-Duels-26-JUL-2024&amp;p=1112144&amp;viewfull=1#post1112144" target="_blank">forum post</a> for full information and details.</p>
+        </div>
+        <div class="content news2" style="display: none;">
+          <p>• Fixed several bugs and crashes in both the client and server.
+            <br>
+            • Upgraded the server to enhance performance and stability.
+            <br>
+            • Active players (= about to gain AP, have AP or AP Shield) are no longer affected by daily elo degradation, meaning they won't lose 1% elo daily.
+            <br>
+            • Introduced an in-game 'Premium Items' bounty box in the shop: Contains a 7-day temporary premium item with an optional 25% refund on recycling.
+            <br>
+            • Grenades and Mines are now blocked from CW.
+            <br>
+            • Enhanced revolver accuracy; reduced reload times for x2 revolvers.
+            <br>
+            • Reduced damage of [L] pistols by 1; decreased reload times for x2 pistols.
+            <br>
+            • Scrider: Increased drop rates for Scrider's Magazine and Scrider's Weight Ring.
+            <br>
+            • In gameroom, users that are currently playing now have a play icon.
+            <br>
+            • SGO room mod now also blocks hotshots.
+            <br>
+            • Elo gain/loss is now 0 in password-protected and/or RPG mod rooms.
+            <br>
+            • Fixed Garden windows visibility. (Special thanks to HellSniper)
+            <br>
+            • Added 'Exhibition' map to showcase new map features. (Special thanks to HellSniper)
+            <br>
+            • Fixed several issues in other maps: Arena, Attack-Defense, Darker, Island Temple, Snow Child. (Special thanks to HellSniper)
+            <br>
+            • Fixed issues in CQ maps, including glitches allowing players to go inside/through walls. (Special thanks to HellSniper)
+            <br>
+            • Added Krabby Burger to the donation shop. (Created by Pookiebearr)
+            <br>
+            • Added bot command filters, fixed ghosted bots issue, and updated /ghost command.
+            <br>
+            • Duel Mode: Player with more damage dealt wins if time runs out (note: does not apply to glad)
+            <br>
+            • Implemented automatic responses to warn against buying, selling, trading.
+            <br>
+            • Fixed undefined behavior in massive strike (Special thanks to Gunblade).
+            <br>
+            • Resolved a crash issue that occurred when dying while exiting CQ.
+            <br><br>
+            View <a href="https://freestylersworld.com/showthread.php?126351" target="_blank">forum post</a> for full information and details.
+          </p>
+        </div>
+        <div class="content news3" style="display: none;">
+          <p>• Fixed a crash<br><br>
+            • Fixed antilead 0 dmg hits<br><br>
+            • Fixed QOTD bug (if a CQ was QOTD, all of them were QOTD)<br><br>
+            • Fixed some CTF bugs<br><br>
+            • Fixed team spawns / CTF spawns in X Minecraft<br><br>
+            • Added hp/ap/ammo spawns to Canal Town<br><br>
+            • Added /ghost, /unghost and /ghostlist for Training mode (except for events), allowing you to /ghost users that annoy you. Ghosted users cannot attack you and cannot be attacked.<br><br>
+            • Guns now reload instantly in Training mode (except for events)<br><br>
+            • Added visual massive timer as option (disabled per default), you can enable it at Options -&gt; Video -&gt; Tab 4 -&gt; "Enable Massive Timer"<br><br>
+            • Female shotgun yoyo animation is now an option (disabled per default), you can enable it at Options -&gt; Misc -&gt; "Enable Female Shotgun Yoyo"<br><br>
+
+            View <a href="https://freestylersworld.com/showthread.php?125818" target="_blank">forum post</a> for full information and details.</p>
+        </div>
+        <div class="content news4" style="display: none;">
+          <p>• Improved Anti-Lead<br>
+            • Increased [H] shotgun delays by 50<br>
+            • Increased [SH] shotgun delays by 100<br>
+            • Increased [SSH] shotgun delays by 150<br>
+            • Added /restart command for CWs - starts a vote to restart the round<br>
+            • Removed Stairway from 2s/3s CW map pool (4+ only)<br>
+            • Removed Ruin from 2s/3s CW map pool (4+ only)<br>
+            • Removed Dungeon from 2s/3s CW map pool (4+ only)<br>
+            • Removed Station from 2s CW map pool (3+ only)<br>
+            • Removed Island from 2s CW map pool (3+ only)<br>
+            • Removed Lost Shrine from 2s CW map pool (3+ only)<br>
+            • Fixed glitch allowing you to queue up twice for CW<br>
+            • Fixed names of "Active Sports" clothes<br>
+            • Fixed blast grenades damage not scaling based on distance<br>
+            • Reduced /kick vote time from 60 seconds to 30 seconds<br>
+            • Quest: Reduced the portal waiting time until next round from 30 to 15 seconds<br>
+            • Increased the time to leave in gladiator rooms from 5 to 10 seconds to decrease death avoids<br>
+            • You should no longer lose elo if you leave a TDM / Duel within 7 seconds after spawning and haven't taken damage yet<br>
+            • Added colored icon backgrounds in your inventory for donation / luckybox items<br>
+            • Added 2 new luckybox items created by Rain (The Musashi, Marlow X)<br><br>
+
+            View <a href="https://freestylersworld.com/showthread.php?125818" target="_blank">forum post</a> for full information and details.</p>
+        </div>
+        <div class="content news5" style="display: none;">
+          <p>Explosion Changes: Reduced damage through walls; eliminated damage through floors. Increased explosive grenade and launcher damage by 25%. TNT explosion radius increased by 10%. Fixed issue with mines sometimes not exploding properly. Placing more mines than you can carry will now result in your old mines being destroyed. Added brand new "EX/DMG Ring" to the in-game shop. Equip these rings to reduce explosive damage by 13-25% each. Stack them up to create an even stronger defense against devastating explosions!<br><br>
+
+            RPG Changes: Skill upgrades expanded to Lv. 20 (MAX), matching the previous Lv. 10 (MAX) in strength. You need to reach 200 kills to max all skills now. Vampire effect and Reload Speed effect strength decreased. In Survival mode, the strength of RPG skills remain untouched (except for Vampire). Now, skills at Lv. 20 (MAX) have double the effect strength compared to the old Lv. 10 (MAX), empowering you to create unique and specialized playstyles<br><br>
+
+            Frooples' Bot Changes: Improved compatibility with scroll wheel in "/bot teach" command. Added score display in "/bot teach" and reset combo only on first action press. Player receives kill credit when bots eliminate an opponent. Recording and playing chat and menu windows enabled. Improved cursor navigation and fixed various issues.<br><br>
+
+            Other Changes: Redesigned mine model by HellSniper. Canal Town map enhancements by HellSniper. Complete overhaul of X Minecraft map by HellSniper. Fixed CW players not receiving points when leaving too quickly when CW ends. Fixed floating damage numbers showing 0 damage. Fixed pingwheel functionality. Enhanced chat filtering algorithm. Increased AFK autokick time. Improved "/kick" votes. Spawn protection adjustments. Optimized FPS limiter. Camera distance option expanded. Archetype/V2 and White Map options integrated into "Map Texture Quality" option. Blocked Virtual Machines for security. Event channel no longer affects elo/kills/deaths/exp. Base hairstyles are now available as headpieces. Increased base damage of cold and lightning massive damage to be on par with fire/poison massive damage. Various crash fixes.<br><br>
+
+            View <a href="https://freestylersworld.com/showthread.php?125690" target="_blank">forum post</a> for full information and details.</p>
+        </div>
+        <div class="content news6" style="display: none;">
+          <p>• Fixed gameplay bugs: crashes, wall collision/see-through, team balance/randomization and much more<br>
+            • Improved AFK autokick: less tolerance time, only considers inactivity when alive<br>
+            • Modified poison element: less damage, but ignores armor<br><br>
+
+            • Added ping wheel system for team communication (default key: ALT)<br>
+            • Added quick ping option: press and release ping button within 0.1 seconds<br>
+            • Pings are fully customizable in options<br><br>
+
+            • Added combat radar system: shows enemies and teammates in team modes (except: Team Gladiator, Team Training)<br>
+            • Made radar dynamic: updates enemy positions based on gunshots and sight<br>
+            • Radar is customizable in options: enable/disable/hide teammates, change size<br><br>
+
+            • Buffed smoke grenades: bigger poison damage radius, poison damage ignores armor, thicker smoke core, faster fade off<br>
+            • Added Smoke grenade-Molotov interaction: Smoke grenades extinguish Molotovs, causing them to pop instantly<br>
+            • Molotovs can't be ignited in smoke grenades<br><br>
+
+            • Balanced sticky grenades: 50% less damage when sticked to yourself or teammates, 200% damage when sticked to enemies<br>
+            • Sticked targets are slowed down based on amount of stickies (5% per sticky for yourself, 10% per sticky for enemies)<br>
+            • Made sticky grenades stick to enemies more easily<br><br>
+
+            • Increased mine clip size (4 -&gt; 5 for Mine, 5 -&gt; 6 for Demolition Mine)<br>
+            • Mines can be shot to destroy them, with a visible healthbar when looking at them. They explode when destroyed, dealing damage in a small AOE<br><br>
+
+            View <a href="https://freestylersworld.com/showthread.php?125426" target="_blank">forum post</a> for full information and details.</p>
+        </div>
+        <div class="content news7" style="display: none;">
+          <p>Hey Freestylers,<br><br>
+
+            we have released another small update.<br><br>
+
+            • In TDM/CW: you can now see the currently alive players and remaining round time at the top while playing (if you don't like it, you can disable the option at Options -&gt; Video -&gt; Tab 4)<br><br>
+
+            • Scoreboard now shows character name colors (you can right-click while scoreboard is open to switch to colorcode-mode)<br><br>
+
+            • Fixed crash when quick-leaving a game after getting flipped to death<br><br>
+
+            • Improved auto-team-balance mechanics<br><br>
+
+            • Added new emojis<br><br>
+
+            View <a href="https://freestylersworld.com/showthread.php?125065" target="_blank">forum post</a> for full information and details.<br><br>
+
+            Enjoy,<br>
+            FreestylersWorld Staff</p>
+        </div>
+        <div class="content news8" style="display: none;">
+          <p>Hey Freestylers,<br><br>
+
+            we have released a small update to bring you some changes.<br><br>
+
+            • Low Quality Models option: You can now choose to exclude yourself<br>
+            • Floating damage numbers are now hidden again if character is behind a wall<br>
+            • You can now dance at the end of a round<br>
+            • Performance improvements<br>
+            • Fixed crashes<br>
+            • Fixed quest/cq/survival bosses sometimes dropping nothing<br>
+            • Fixed fallen to oblivion spam bug in replays <br>
+            • Fixed dance list from accidentally being opened while leveling a skill in RPG<br><br>
+
+            View <a href="https://freestylersworld.com/showthread.php?125049" target="_blank">forum post</a> for full information and details.<br><br>
+
+            Enjoy,<br>
+            FreestylersWorld Staff</p>
+        </div>
+        <div class="content news9" style="display: none;">
+          <p>• Fixed crash caused by TNT<br>
+            • Reduced range of TNT<br>
+            • Added new TNT countdown effect<br>
+            • TNT countdown is now blue for TNT that cannot hurt you (e.g. from team mates)<br>
+            • Fixed crash caused by elements<br>
+            • Fixed 'fallen to oblivion' glitch/bug<br>
+            • Fixed rejoin bug where you could not respawn if you rejoined too quickly<br>
+            • Fixed snowball sound in christmas rooms<br>
+            • Fixed avatar overriding bug in christmas rooms<br>
+            • You can now instantly do certain dances via the command /dance <number><br>
+              • You can now quickly close the dance menu by hitting ESC or by hitting the dance key again (ESC will close the menu, hitting the dance key again will close the menu and play the default dance)<br>
+              • Ammo bar now turns yellow when you have less than 40% ammo<br>
+              • Added weapon rarity color when spectating<br>
+              • Fixed random flag/candy/etc drops in quest/cq/survival<br>
+              • Added flamethrowers and TNT drops to quest/cq/survival<br>
+              • NPCs now die if they fall out of the map (most noticeable in Army Men II CQ)<br>
+              • TDM autoteambalance update: If autoteambalance is enabled and the teams are even and one team wins 3 times in a row, the teams are now rebalanced completely, based on K/D<br><br>
+
+              View <a href="https://freestylersworld.com/showthread.php?125034" target="_blank">forum post</a> for full information and details.</number>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var element = document.getElementsByTagName('li');
+    for (var i = 0; i < element.length; i++) {
+      let j = i
+      element[i].addEventListener('click', function(li) {
+        var divs = document.getElementsByClassName('news');
+        for (var i = 0; i < divs.length; i++) {
+          divs[i].style.display = 'none';
+        }
+
+        var lis = document.getElementsByTagName('li');
+        for (var i = 0; i < lis.length; i++) {
+          lis[i].className = '';
+        }
+        li.target.className = 'active';
+
+        var news = document.getElementsByClassName('content');
+        for (var k = 0; k < news.length; k++) {
+          news[k].style.display = 'none'
+        }
+        document.getElementsByClassName('news' + (j + 1))[0].style.display = 'block';
+
+        var title = document.getElementsByClassName('title');
+        for (var k = 0; k < title.length; k++) {
+          title[k].style.display = 'none'
+        }
+        document.getElementsByClassName('title' + (j + 1))[0].style.display = 'block';
+      }, false);
+    }
+
+    var stop = false;
+    getData();
+
+    function getData() {
+      var req = new XMLHttpRequest();
+      req.open('GET', 'launcher.php', true);
+      req.addEventListener('readystatechange', function(e) {
+        if (e.target.readyState == 4 && e.target.status == 200) {
+          stop = true;
+          handleData(JSON.parse(e.target.response));
+        }
+      });
+      req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      req.send();
+    }
+
+    setInterval(function() {
+      if (stop) {
+        return;
+      }
+      getData();
+    }, 5000);
+
+    function handleData(data) {
+      // Item of the day.
+      document.getElementsByClassName('c1')[0].innerHTML = data['item']['Price'] + ' coins';
+      document.getElementsByClassName('c2')[0].innerHTML = data['item']['NewPrice'] + ' coins';
+      document.getElementsByClassName('c3')[0].src = 'https://fgunz.net/images/items/' + data['item']['Name'] + '.png';
+      document.getElementsByClassName('c5')[0].href = 'https://fgunz.net/itemshop/donation?id=' + data['item']['ID'];
+      document.getElementsByClassName('name')[0].innerHTML = data['item']['Name'];
+      document.getElementsByClassName('name')[1].innerHTML = data['item']['Name'];
+
+      // Player count.
+      document.getElementsByClassName('c4')[0].innerHTML = data['pc'][0] + ' players';
+
+      // Event state.
+      var hasEvent = data['event']
+      document.getElementsByClassName('c7')[0].innerHTML = hasEvent ? 'event in' : 'no event';
+      document.getElementsByClassName('c8')[0].innerHTML = hasEvent ? 'progress' : 'in progress';
+      if (hasEvent) {
+        document.getElementsByClassName('event')[0].className += ' hasevent';
+      }
+
+      // News items date.
+      var element = document.getElementsByTagName('li');
+      for (var i = 0; i < element.length; i++) {
+        if (!data['news'][i]) {
+          continue;
+        }
+        element[i].innerHTML = data['news'][i]['date']
+      }
+
+      // News item content.
+      var element = document.getElementsByClassName('content');
+      for (var i = 0; i < element.length; i++) {
+        if (!data['news'][i]) {
+          continue;
+        }
+        element[i].innerHTML = '<p>' + data['news'][i]['message'] + '</p>';
+      }
+
+      // News item title.
+      var element = document.getElementsByClassName('title');
+      for (var i = 0; i < element.length; i++) {
+        if (!data['news'][i]) {
+          continue;
+        }
+        element[i].innerHTML = '<h1>' + data['news'][i]['title'] + '</h1><h2>posted on <span>' + data['news'][i]['date'] + '</span></h2>';
+      }
+    }
+  </script>
+
+</body>
+
+</html>
